@@ -7,7 +7,6 @@ const {
   deleteEmployee,
   getEmployee,
 } = require('../../controllers/employeesController')
-// const verifyJWT = require("../../middleware/verifyJWT");
 
 router
   .route('/')
