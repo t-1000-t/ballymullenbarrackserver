@@ -1,7 +1,8 @@
 {
   "name": "ballymullenbarrackserver",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Express tutorial",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
@@ -12,13 +13,12 @@
     "url": "git+https://github.com/t-1000-t/ballymullenbarrackserver.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ballymullen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/t-1000-t/ballymullenbarrackserver/issues"
   },
   "homepage": "https://github.com/t-1000-t/ballymullenbarrackserver#readme",
-  "description": "",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
