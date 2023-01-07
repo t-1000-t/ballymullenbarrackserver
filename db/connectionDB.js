@@ -12,7 +12,7 @@ async function connectionDB() {
     await mongoose.connect(mongodbUri, option)
     console.log('MongoDB connect...')
   } catch (error) {
-    console.log('MongoDB connection error:', error)
+    console.log('MongoDB connection error :', error)
     process.exit(1)
   }
 }
