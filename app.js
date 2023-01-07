@@ -25,7 +25,7 @@ app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine(optionsReactViews))
 
 app.get('/', (req, res) => {
-  // res.send('We are on the Web-BallyMullen server')
+  // res.send('We are on the Web-BallyMullen server ')
   const query = req.query
 
   res.render('index', query)
