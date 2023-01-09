@@ -5,15 +5,21 @@ const { sendError } = require('../../helper/respondError')
 module.exports.createShortUrl = (req, res) => {
   const { url } = req.body
 
-  const createNewShortUrl = new Urls({
-    url,
-    shortUrl: shortId(),
-  })
+  Urls.findOne({ url }).then((matchErl) => {
+    if (matchErl) {
+      res.redirect(`/?result=http://localhost:5000/${matchErl.shortUrl}`)
+    } else {
+      const createNewShortUrl = new Urls({
+        url,
+        shortUrl: shortId(),
+      })
 
-  createNewShortUrl
-    .save()
-    .then((result) => {
-      res.redirect(`/?result=http://localhost:5000/${result.shortUrl}`)
-    })
-    .catch((err) => sendError(err, res))
+      createNewShortUrl
+        .save()
+        .then((result) => {
+          res.redirect(`/?result=http://localhost:5000/${result.shortUrl}`)
+        })
+        .catch((err) => sendError(err, res))
+    }
+  })
 }

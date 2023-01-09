@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const app = express()
 const config = require('./config/config')
 const apiRouter = require('./router/router')
+const getUrl = require('./src/urls/getUrlById')
 
 require('./db/connectionDB')()
 
@@ -24,6 +25,7 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine(optionsReactViews))
 
+app.get('/:shortUrlId', getUrl)
 app.get('/', (req, res) => {
   // res.send('We are on the Web-BallyMullen server ')
   const query = req.query
@@ -31,7 +33,9 @@ app.get('/', (req, res) => {
   res.render('index', query)
 })
 
-app.use('/sign-in', () => {})
+app.get('/auth/sign-in', (req, res) => {
+  res.render('signIn')
+})
 app.use('/sign-up', () => {})
 app.use('/dashboard', () => {})
 
