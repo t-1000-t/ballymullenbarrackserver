@@ -5,51 +5,60 @@ const { appUrl } = require('../config/config')
 function SignIn() {
   return (
     <DefaultLayout>
-      <div className='container'>
-        <div className='row p-2 justify-content-sm-center'>
-          <div className='col-sm-6 sm-4 lg-4'>
+      <div class='container'>
+        <div class='row justify-content-sm-center'>
+          <div class='col-12 col-sm-6'>
             <form
-              className='form-sign'
+              class='form-signin'
               method='post'
               action={appUrl + '/api/auth/login'}
-              encType='application/x-www-form-urlencoded'
+              enctype='application/x-www-form-urlencoded'
             >
-              <h1 className='h3 mb-3 fw-normal'>Please sign in</h1>
+              <div class='text-center mb-4'>
+                <h1 class='h3 mb-3 font-weight-normal'>Floating labels</h1>
+                <p>
+                  Build form controls with floating labels via the <code>:placeholder-shown</code>{' '}
+                  pseudo-element.{' '}
+                  <a href='https://caniuse.com/#feat=css-placeholder-shown'>
+                    Works in latest Chrome, Safari, and Firefox.
+                  </a>
+                </p>
+              </div>
 
-              <div className='form-floating p-2' bis_skin_checked='1'>
+              <div class='form-label-group'>
                 <input
                   type='email'
                   name='email'
-                  className='form-control'
-                  id='floatingInput'
-                  placeholder='name@example.com'
+                  id='inputEmail'
+                  class='form-control'
+                  placeholder='Email address'
                   required
-                  autoFocus
+                  autofocus
                 />
-                <label htmlFor='floatingInput'>Email address</label>
+                <label for='inputEmail'>Email address</label>
               </div>
-              <div className='form-floating p-2' bis_skin_checked='1'>
+
+              <div class='form-label-group'>
                 <input
                   type='password'
                   name='password'
-                  className='form-control'
-                  id='floatingPassword'
+                  id='inputPassword'
+                  class='form-control'
                   placeholder='Password'
                   required
-                  autoFocus
                 />
-                <label htmlFor='floatingPassword'>Password</label>
+                <label for='inputPassword'>Password</label>
               </div>
 
-              <div className='checkbox mb-3' bis_skin_checked='1'>
+              <div class='checkbox mb-3'>
                 <label>
                   <input type='checkbox' value='remember-me' /> Remember me
                 </label>
               </div>
-              <button className='w-100 btn btn-lg btn-primary' type='submit'>
+              <button class='btn btn-lg btn-primary btn-block' type='submit'>
                 Sign in
               </button>
-              <p className='mt-5 mb-3 text-muted'>© 2017–2021</p>
+              <p class='mt-5 mb-3 text-muted text-center'>© 2017-2019</p>
             </form>
           </div>
         </div>

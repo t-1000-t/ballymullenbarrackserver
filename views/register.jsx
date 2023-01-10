@@ -47,7 +47,7 @@ function Register() {
                 </label>
               </div>
               <button className='w-100 btn btn-lg btn-primary' type='submit'>
-                Sign in
+                Sign up
               </button>
               <p className='mt-5 mb-3 text-muted'>© {new Date().getFullYear()}</p>
             </form>
