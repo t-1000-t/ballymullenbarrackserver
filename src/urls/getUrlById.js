@@ -1,8 +1,17 @@
 const Urls = require('./urls.model')
 const sendError = require('../../helper/respondError')
 
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
   const shortUrl = req.params.shortUrlId
+
+  if (
+    shortUrl === 'sign-in' ||
+    shortUrl === 'sign-up' ||
+    shortUrl === 'logout' ||
+    shortUrl === 'dashboard'
+  ) {
+    return next()
+  }
 
   console.log('shortUrl', shortUrl)
   Urls.findOne({ shortUrl })

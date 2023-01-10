@@ -2,7 +2,7 @@ const React = require('react')
 const DefaultLayout = require('./layouts/default')
 const { appUrl } = require('../config/config')
 
-function SignIn() {
+function Register() {
   return (
     <DefaultLayout>
       <div className='container'>
@@ -11,10 +11,10 @@ function SignIn() {
             <form
               className='form-sign'
               method='post'
-              action={appUrl + '/api/auth/login'}
+              action={appUrl + '/api/auth/register'}
               encType='application/x-www-form-urlencoded'
             >
-              <h1 className='h3 mb-3 fw-normal'>Please sign in</h1>
+              <h1 className='h3 mb-3 fw-normal'>Register</h1>
 
               <div className='form-floating p-2' bis_skin_checked='1'>
                 <input
@@ -49,7 +49,7 @@ function SignIn() {
               <button className='w-100 btn btn-lg btn-primary' type='submit'>
                 Sign in
               </button>
-              <p className='mt-5 mb-3 text-muted'>© 2017–2021</p>
+              <p className='mt-5 mb-3 text-muted'>© {new Date().getFullYear()}</p>
             </form>
           </div>
         </div>
@@ -58,4 +58,4 @@ function SignIn() {
   )
 }
 
-module.exports = SignIn
+module.exports = Register

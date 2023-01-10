@@ -33,11 +33,15 @@ app.get('/', (req, res) => {
   res.render('index', query)
 })
 
-app.get('/auth/sign-in', (req, res) => {
+app.get('/sign-in', (req, res) => {
   res.render('signIn')
 })
-app.use('/sign-up', () => {})
-app.use('/dashboard', () => {})
+app.use('/sign-up', (req, res) => {
+  res.render('register')
+})
+app.use('/dashboard', (req, res) => {
+  res.render('index')
+})
 
 app.use('/api', apiRouter)
 
