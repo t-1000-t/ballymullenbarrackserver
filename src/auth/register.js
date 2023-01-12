@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
       const result = await user.save()
 
       if (result) {
-        // res.status(201).json({ user: result });
-        res.redirect('/dashboard', 301)
+        res.status(201).json({ user: result })
+        // res.redirect('/dashboard', 301)
 
         // login(req, res)
       }
