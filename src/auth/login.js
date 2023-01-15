@@ -3,7 +3,6 @@ const { Users } = require('../users')
 module.exports = async (req, res) => {
   try {
     const body = req.body
-    console.log('body', body)
     const user = await Users.findOne({ email: body.email })
 
     if (user) {
@@ -11,12 +10,10 @@ module.exports = async (req, res) => {
 
       user.getJWT()
 
-      console.log('user', user)
       const respondUserData = user.getPublicFields()
       passwordCompare
         ? res.send(respondUserData)
-        : // res.status(200).json({ ...respondUserData })
-          res.status(404).json({ message: 'Email or password not correct' })
+        : res.status(404).json({ message: 'Email or password not correct' })
       // res.redirect("/dashboard", 301)
     } else {
       // якщо юзера немає перерендерити дану сторінку Авторизації з потрібними ерорами
