@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  res.send('We are on the Web-BallyMullen server ')
+  res.send('We are on the Web-BallyMullen server')
 })
 
 app.use('/api', apiRouter)
