@@ -1,16 +1,19 @@
 const express = require('express')
-// const cors = require('cors')
-// const morgan = require('morgan')
+const cors = require('cors')
+const morgan = require('morgan')
 const app = express()
 const config = require('./config/config')
 const apiRouter = require('./router/router')
 
-require('./db/connectionDB')()
+app.use(morgan('tiny'))
+app.use(cors('*'))
 
 if (config.mode === 'development') {
   const logger = require('morgan')
   app.use(logger('dev'))
 }
+
+require('./db/connectionDB')()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

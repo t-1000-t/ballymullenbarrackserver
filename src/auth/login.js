@@ -14,8 +14,9 @@ module.exports = async (req, res) => {
       console.log('user', user)
       const respondUserData = user.getPublicFields()
       passwordCompare
-        ? res.status(200).json({ ...respondUserData })
-        : res.status(404).json({ message: 'Email or password not correct' })
+        ? res.send(respondUserData)
+        : // res.status(200).json({ ...respondUserData })
+          res.status(404).json({ message: 'Email or password not correct' })
       // res.redirect("/dashboard", 301)
     } else {
       // якщо юзера немає перерендерити дану сторінку Авторизації з потрібними ерорами
