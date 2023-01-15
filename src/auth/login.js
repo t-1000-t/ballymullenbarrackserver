@@ -3,20 +3,23 @@ const { Users } = require('../users')
 module.exports = async (req, res) => {
   try {
     const body = req.body
-
+    console.log('body', body)
     const user = await Users.findOne({ email: body.email })
-    console.log('user', user)
+
     if (user) {
-      console.log(user.password === body.password)
       const passwordCompare = user.validatePassword(body.password)
 
+      user.getJWT()
+
+      console.log('user', user)
+      const respondUserData = user.getPublicFields()
       passwordCompare
-        ? res.status(200).json({ user: user })
-        : res.status(404).json({ message: 'Email or Password not correct' })
-      // res.redirect('/dashboard', 301)
+        ? res.status(200).json({ ...respondUserData })
+        : res.status(404).json({ message: 'Email or password not correct' })
+      // res.redirect("/dashboard", 301)
     } else {
-      // catch
-      res.status(404).json({ message: 'Some fields are missing' })
+      // якщо юзера немає перерендерити дану сторінку Авторизації з потрібними ерорами
+      res.status(404).json({ message: 'Email or password not correct' })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })

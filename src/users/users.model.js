@@ -17,25 +17,36 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
       minlength: 6,
-      maxlength: 12,
     },
+    token: {
+      type: String,
+      default: null,
+    },
+    name: String,
+    photo: String,
+    googleId: String,
+    facebookId: String,
   },
   {
     timestamps: true,
   },
 )
 
+userSchema.methods.getPublicFields = function () {
+  return {
+    userData: {
+      email: this.email,
+    },
+    token: this.token,
+  }
+}
+
+//Saves the user's password hashed (plain text password storage is not good)
 userSchema.pre('save', function (next) {
   const user = this
 
-  if (
-    // eslint-disable-next-line no-extra-parens
-    (user.password && this.isModified('password')) ||
-    // eslint-disable-next-line no-extra-parens
-    (user.password && this.isNew)
-  )
+  if ((user.password && this.isModified('password')) || (user.password && this.isNew))
     bcrypt.genSalt(10, (err, salt) => {
       if (err) return next(err)
 
@@ -50,12 +61,11 @@ userSchema.pre('save', function (next) {
 })
 
 userSchema.methods.validatePassword = function (password) {
-  const compare = bcrypt.compareSync(password, this.password)
-  return compare
+  return bcrypt.compareSync(password, this.password)
 }
 
 userSchema.methods.getJWT = function () {
-  const preToken = jwt.sign(
+  const token = jwt.sign(
     {
       id: this._id,
     },
@@ -65,11 +75,9 @@ userSchema.methods.getJWT = function () {
     },
   )
 
-  const token = preToken
-
   this.token = token
   this.save()
   return token
 }
 
-module.exports = User = mongoose.model('User', userSchema)
+module.exports = Users = mongoose.model('Users', userSchema)

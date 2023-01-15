@@ -1,4 +1,5 @@
 const { Users } = require('../users')
+const login = require('./login')
 
 module.exports = async (req, res) => {
   try {
@@ -10,10 +11,10 @@ module.exports = async (req, res) => {
       const result = await user.save()
 
       if (result) {
-        res.status(201).json({ user: result })
-        // res.redirect('/dashboard', 301)
+        // res.status(201).json({ user: result })
+        // res.redirect("/dashboard", 301);
 
-        // login(req, res)
+        await login(req, res)
       }
     } else {
       res.status(404).json({ message: 'Some required fields missing' })

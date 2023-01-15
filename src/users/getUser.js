@@ -1,7 +1,10 @@
-const Users = require('./users.model')
-
 const getUser = (req, res) => {
-  // req.user.save()
+  console.log('req', req.user)
+  req.user.save()
+
+  res.json({
+    customeUserByIdFromToken: req.user.getPublicFields(),
+  })
 }
 
 module.exports = getUser
