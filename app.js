@@ -1,11 +1,9 @@
 const express = require('express')
 const cors = require('cors')
-const morgan = require('morgan')
 const app = express()
 const config = require('./config/config')
 const apiRouter = require('./router/router')
 
-app.use(morgan('tiny'))
 app.use(cors('*'))
 
 if (config.mode === 'development') {
