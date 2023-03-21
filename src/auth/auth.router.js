@@ -23,8 +23,12 @@ router
     }),
     // on succes
     (req, res) => {
+      console.log('req.user', req.user)
       // return the token or you would wish otherwise give eg. a succes message
-      res.redirect(301, `${appUrl}/api/auth/callback?token=${'Bearer ' + req.user._doc.token}`)
+      res.redirect(
+        301,
+        `${appUrl}/api/auth/callback?token=${'Bearer ' + req.user._doc.token}`
+        )
     },
 
     // on error; likely to be something FacebookTokenError token invalid or already used token,

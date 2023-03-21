@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const cors = require('cors')
 const app = express()
 const config = require('./config/config')
@@ -15,6 +16,10 @@ require('./db/connectionDB')()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
+require('./middleware/passport')(passport)
+app.use(passport.initialize())
 
 app.get('/', (req, res) => {
   res.send('We are on the Web-BallyMullen server')
